@@ -1,0 +1,15 @@
+*.DS_Store
+__pycache__
+.ipynb_checkpoints
+*.trr
+*.xtc
+*.edr
+*.log
+*.xvg
+*.trr.*
+*.xtc.*
+*.edr.*
+*.log.*
+*.xvg.*
+*#
+*.cpt
