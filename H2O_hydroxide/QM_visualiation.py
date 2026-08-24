@@ -1,3 +1,5 @@
+import numpy as np
+
 def read_cube_grid_info(path):
     with open(path, "r") as f:
         line1 = f.readline()  # comment
@@ -145,10 +147,6 @@ def add_atoms(mol,fig):
         name="atoms",
         showlegend=False,
     ))
-
-
-import numpy as np
-
 
 def subtract_cube_files(
     cube_initial,
