@@ -25,7 +25,7 @@ ATOM     16  H   UNK X   1       0.034   0.042   1.402  1.00  0.00      SYST H
 ATOM     17  O   UNK X   1       1.384  -0.275   4.470  1.00  0.00      SYST O  
 ATOM     18  H   UNK X   1       0.880   0.076   3.723  1.00  0.00      SYST H  
 ATOM     19  H   UNK X   1       2.151  -0.733   4.148  1.00  0.00      SYST H  
-ATOM     20  O   UNK X   1      -1.991   1.144  -3.297  1.00  0.00      SYST O  
+ATOM     20  O   UNK X   1      -1.992   1.144  -3.297  1.00  0.00      SYST O  
 ATOM     21  H   UNK X   1      -1.853   0.188  -3.278  1.00  0.00      SYST H  
-ATOM     22  H   UNK X   1      -2.904   1.336  -3.123  1.00  0.00      SYST H  
+ATOM     22  H   UNK X   1      -2.905   1.336  -3.123  1.00  0.00      SYST H  
 END
