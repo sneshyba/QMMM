@@ -1,0 +1,10 @@
+Just a reminder about github updating:
+
+find .  -size +100M
+(if any files show up, figure out a way to reduce or exclude them)
+
+then the usual
+
+git status
+git commit -m "msg"
+git push
