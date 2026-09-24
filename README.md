@@ -1,4 +1,4 @@
 Reaction energetics calculations:
 
-methyl chloride reacting with hydroxide (all QM)
-Hydroxide with a water molecule nearby (hydroxide QM, water MM)
+CH3Cl_hydroxide: methyl chloride reacting with hydroxide (all QM)
+H2O_hydroxide: Hydroxide with a water molecule nearby (hydroxide QM, water MM)
