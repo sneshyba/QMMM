@@ -281,3 +281,78 @@ def read_gro(
         mm_names,
         mm_residue_names,
     )
+
+def pdb_to_gro(pdb_file, gro_file, residue_name="MOL", box_padding=1.0):
+    """
+    Convert a PDB file to a GROMACS .gro file.
+
+    Parameters
+    ----------
+    pdb_file : str
+        Input PDB filename.
+    gro_file : str
+        Output GRO filename.
+    residue_name : str
+        Residue name to use in the GRO file.
+    box_padding : float
+        Padding in nm added around the molecule in each direction.
+    """
+
+    atoms = []
+
+    with open(pdb_file) as f:
+        for line in f:
+            if not (line.startswith("ATOM") or line.startswith("HETATM")):
+                continue
+
+            atom_number = int(line[6:11])
+            atom_name = line[12:16].strip()
+
+            # PDB coordinates are in Å
+            x = float(line[30:38]) / 10.0
+            y = float(line[38:46]) / 10.0
+            z = float(line[46:54]) / 10.0
+
+            atoms.append((atom_number, atom_name, x, y, z))
+
+    # Determine molecular bounding box
+    xs = [a[2] for a in atoms]
+    ys = [a[3] for a in atoms]
+    zs = [a[4] for a in atoms]
+
+    xmin, xmax = min(xs), max(xs)
+    ymin, ymax = min(ys), max(ys)
+    zmin, zmax = min(zs), max(zs)
+
+    # Shift molecule so its minimum coordinate is box_padding
+    shift_x = box_padding - xmin
+    shift_y = box_padding - ymin
+    shift_z = box_padding - zmin
+
+    box_x = (xmax - xmin) + 2 * box_padding
+    box_y = (ymax - ymin) + 2 * box_padding
+    box_z = (zmax - zmin) + 2 * box_padding
+
+    with open(gro_file, "w") as f:
+
+        f.write("Converted from PDB\n")
+        f.write(f"{len(atoms):5d}\n")
+
+        for i, (atom_number, atom_name, x, y, z) in enumerate(atoms, start=1):
+
+            x += shift_x
+            y += shift_y
+            z += shift_z
+
+            # GRO fixed-width format
+            f.write(
+                f"{1:5d}"
+                f"{residue_name:<5s}"
+                f"{atom_name:>5s}"
+                f"{i:5d}"
+                f"{x:8.3f}"
+                f"{y:8.3f}"
+                f"{z:8.3f}\n"
+            )
+
+        f.write(f"{box_x:10.5f}{box_y:10.5f}{box_z:10.5f}\n")
